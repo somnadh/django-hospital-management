@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>jQuery Add / Remove Table Rows Dynamically</title>
+<link rel="stylesheet" href="{% static 'main.css' %}"/>
+<style>
+    table, td, th {  
+                border: 2px solid blue;
+                text-align: center;
+            }
+
+            table {
+                border-collapse: collapse;
+                width: 80%;
+            }
+            th{
+                background-color: #00cccc;
+            }
+            th, td {
+                padding: 5px;
+            }
+
+        </style>
+  
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $(".add-row").click(function(){
+            var name = $("#name").val();
+            var quantity = $("#no").val();
+            var markup = "<tr><td><input type='checkbox' name='record'></td><td>" + name + "</td><td>" + quantity + "</td></tr>";
+            $("table tbody").append(markup);
+        });
+        
+        // Find and remove selected table rows
+        $(".delete-row").click(function(){
+            $("table tbody").find('input[name="record"]').each(function(){
+            	if($(this).is(":checked")){
+                    $(this).parents("tr").remove();
+                }
+            });
+        });
+    });    
+</script>
+</head>
+<body  style= "background-color : EBEDEF "  >
+        
+    <div style="text-align: center;background-color: aqua;" >
+        <p style="font-size: 50px; font-weight: 900; font-family: 'Times New Roman', Times, serif; ">International Hospitals Pvt.Ltd</p>
+    </div>
+<body>
+    <form>
+        <br><br>
+            <h2 style="padding-top: 10px; padding-left: 43%; padding-right: 35%;">Issue Medicines</h2>
+
+        <input class="form-label" type="hidden" value="{{id}}" name="pt_id" id="id" required>
+<center>
+        Medcine Name<select class="form-label" name='med' required id="name">
+            {% for option in m %}
+            <option value="{{ option }}">{{ option }}</option>
+            {% endfor %}
+            </select>
+        <input type="text" id="no" placeholder="Qunatity">
+    	<input type="button" class="add-row" value="Add Row">
+    </form>
+    <table style="padding-top: 10px; padding-left: 39%; padding-right: 35%;">
+        <thead>
+            <tr>
+                <th>Select</th>
+                <th>Medicine Name</th>
+                <th>Qunatity</th>
+            </tr>
+        </thead>
+        <tbody>
+           
+        </tbody>
+    </table>
+    <button type="button" class="delete-row">Delete Row</button>
+</body> 
+</html>

@@ -1,0 +1,124 @@
+
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Patient Registration</title>
+        <link rel="stylesheet" href="{% static 'main.css' %}"/>
+        <script type="text/javascript">
+            var substate = {
+                AndhraPradesh: ["East Godavari", "West Godavari", "Krishna", "Guntur", "Prakasam", "Srikakulam", "Vizianagaram", "Visakhapatnam", "Kurnool", "Chittoor", "Kadapa", "Anantapur"],
+                Telangana: ["Warangal", "Nizamabad", "Karimnagar", "Adilabad", "Bhadradri", "Kothagudem", "Hyderabad", "Jagtial", "Jangaon", "Jayashankar", "Bhupalapally", "Jogulamba", "Kamareddy", "Karimnagar", "Khammam", "Kumarambheem"]
+            }
+
+            function SelectStateNDist(value) {
+                if (value.length == 0)
+                    document.getElementById("district").innerHTML = "<option></option>";
+                else {
+                    var citiesOptions = "";
+                    for (stateId in substate[value]) {
+                        citiesOptions += "<option>" + substate[value][stateId] + "</option>";
+                    }
+                    document.getElementById("district").innerHTML = citiesOptions;
+                }
+            }
+
+
+            function resetSelection() {
+                document.getElementById("state").selectedIndex = 0;
+                document.getElementById("district").selectedIndex = 0;
+            }
+        </script>
+    </head>
+    <body  style= "background-color : EBEDEF "  >
+        <div style="text-align: center;background-color: aqua;" >
+      <p style="font-size: 50px; font-weight: 900; font-family: 'Times New Roman', Times, serif; ">International Hospitals Pvt.Ltd</p>
+  </div>
+      
+        <div   style="margin-top: 2%; margin-bottom: 2%;" >
+            <form method="post" action="Storevalues">
+                {% csrf_token %}
+                <h4 style="text-align: center;">Patient Registration</h4>
+                <table style="padding-top: 10px; padding-left: 35%; padding-right: 35%;">
+                    <!-- <tr>
+                        <td style="padding-bottom: 2%;">Patient SSN Id:<font color="red">*<font> </td>
+                        <td style="padding-left: 5%;  padding-bottom: 3%;">
+                            <input class="form-label" type="text" name="ssnid" id="name" required></td>
+                    </tr> -->
+                    <tr>
+                        <td style="padding-bottom: 2%;">Patient Name:<font color="red">*<font> </td>
+                        <td style="padding-left: 5%;  padding-bottom: 3%;">
+                            <input class="form-label" type="text" name="Name" id="name" required></td>
+                    </tr>
+                    <tr>
+                        <td style="padding-bottom: 2%;">Patient Age:<font color="red">*<font> </td>
+                        <td style="padding-left: 5%;  padding-bottom: 3%;">
+                            <input class="form-label" type="text" name="Age" id="age" required></td>
+                    </tr>
+                    <tr>
+                        <td style="padding-bottom: 2%;">Date of Admission:<font color="red">*<font> </td>
+                        <td style="padding-left: 5%; padding-bottom: 3%;">
+                            <input class="form-label" type="date" name="doa" id="age" required></td>
+                    </tr>
+                    <tr>
+                        <td style="padding-bottom: 2%;">Diagnosis:<font color="red">*<font> </td>
+                        <td style="padding-left: 5%; padding-bottom: 3%;">
+                            <select class="form-label" name='diag' required>
+                                <option value="" disabled selected>Select Diagnosis</option>
+                                <option value="General checkup">General Checkup</option>
+                                <option value="Heart pain">Heart pain</option>
+                                <option value="Kidney">Kidney</option>
+                                <option value="cancer">cancer</option>
+                                <option value="skin disease">skin disease</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                    <tr>
+                        <td style="padding-bottom: 2%;">Type of bed:<font color="red">*<font> </td>
+                        <td style="padding-left: 5%; padding-bottom: 3%;">
+                            <select class="form-label" name='typ' required>
+                                <option value="" disabled selected>Select Bed</option>
+                                <option value="General Ward">General Ward</option>
+                                <option value="Semi Sharing">Semi Sharing</option>
+                                <option value="Single Room">Single Room</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-bottom: 2%;">Address:<font color="red">*<font> </td>
+                        <td style="padding-left: 5%;  padding-bottom: 3%;">
+                            <textarea class="form-label" rows="2" cols="20" name="add" required></textarea></td>
+                    </tr>
+                    <tr>
+                        <td style="padding-bottom: 2%;">State:<font color="red">*<font></td>
+                        <td style="padding-left: 5%;  padding-bottom: 3%;">
+                            <select class="form-label" id="state" size="1" name="state" onchange="SelectStateNDist(this.value)" required>
+                                <option value="" disabled selected>Choose state</option>
+                                <option>AndhraPradesh</option>
+                                <option>Telangana</option>
+                            </select></td></tr>
+                    <tr>
+                        <td style="padding-bottom: 2%;">District:<font color="red">*<font></td>
+                        <td style="padding-left: 5%; padding-bottom: 3%;">
+                            <select class="form-label" id="district" size="1" name="District" required>
+                                <option value="" disabled selected>Select state First</option>
+                                <option></option>
+                            </select></td></tr>
+                    <tr >
+                        <td colspan="2" align="center">
+                            <button class="btn" type="submit">Register</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        
+        <footer>
+
+            <h3>2020 &copy; All rights reserved by <span style="color: white;"> Hospital Management System</span></h3>
+
+        </footer>
+    </body>
+</html>

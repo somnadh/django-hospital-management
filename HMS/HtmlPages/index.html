@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+
+    <head>
+        <title>Login Page</title>
+        <link rel="stylesheet" href="{% static 'main.css' %}"/>
+    </head>
+
+    <body style="background-color : EBEDEF ">
+        <header>
+            <div class="logo" style="border-bottom: 4px solid red;">
+                <span style="color: rgb(8, 53, 252); font-size:50px">Hospital Management System</span>
+                <br><br>
+            </div>
+        </header>
+
+
+        <div class="login">
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-logo">
+                    Login
+                </div>
+                <br>
+                <div class="login-form">
+                    Username 
+                    <input class="form-control" type="text" name="txt" value="">
+                </div>
+                <div class="login-form">
+                    Password
+                    <input class="form-control" type="text" name="pwd" value="">
+                </div>
+                <div class="login-form">
+                    <button class="btn" type="submit" formaction="CheckDoctor" >Doctor Login</button>
+                    <button class="btn" type="submit" formaction="CheckReception" >Reception Login</button>
+                    <button class="btn" type="submit" formaction="CheckPharmacy" >Pharmacy Login</button>
+                    <button class="btn" type="submit" formaction="CheckDiagnostics" >Diagnostics Login</button>
+                </div>
+                {% for message in messages %}
+						<button class="btn" style="background-color: red;">{{message}}</button>
+						{% endfor %}
+            </form>
+        </div>
+        <div style="height: 80px;"></div>
+
+        <footer>
+
+            <h3>2020 &copy; All rights reserved by <span style="color: white;"> Hospital Management System</span></h3>
+
+        </footer>
+    </body>
+
+</html>

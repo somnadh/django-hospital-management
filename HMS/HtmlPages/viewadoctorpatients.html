@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>view ALl patient details</title>
+        <link rel="stylesheet" href="{% static 'main.css' %}"/>
+         </head>
+         <style>
+            table, td, th {  
+                border: 2px solid blue;
+                text-align: center;
+            }
+
+            table {
+                border-collapse: collapse;
+                width: 80%;
+            }
+            th{
+                background-color: #00cccc;
+            }
+            th, td {
+                padding: 5px;
+            }
+
+        </style>
+  
+        
+  <body  style= "background-color : EBEDEF "  >
+    <div style="text-align: center;background-color: aqua;" >
+  <p style="font-size: 50px; font-weight: 900; font-family: 'Times New Roman', Times, serif; ">International Hospitals Pvt.Ltd</p>
+</div>
+<div style="margin-top: 5%;" >
+    <!-- <p style="font-size: 50px; font-weight: 900; font-family: 'Times New Roman', Times, serif; ">Welcome to Hospital Management System<br> Mr:{{recption}}</p> -->
+
+     
+       <center> <table>
+           <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Admission Date</th>
+            <th>Type of Ward</th>
+            <th>Address</th>
+            <th>Current Status</th>
+            <th>Checked or not</th>
+
+           </tr>
+                {% for p in p %}
+                
+                            <tr>
+                <td>{{p.patient_name}}</td>
+                <td>{{p.age}}</td>
+                <td>{{p.doa}}</td>
+                <td>{{p.diagnosis}}</td>
+                <td>{{p.address}},{{p.city}},{{p.state1}}</td>
+                <td>{{p.status}}</td>
+                <td><a href="{% url 'doccheckstatus'%}?id={{p.id}}">Link</a></td>
+                    </tr>
+                    
+
+                    {% endfor %}
+
+                </table>
+            </div>
+            <div style="margin-top: 3%;" >
+    <footer>
+            <h3>Copyrights &copy; All rights reserved by <span style="color: white;"> Hospital Management System</span></h3>
+        </footer>
+    </body>
+</html>

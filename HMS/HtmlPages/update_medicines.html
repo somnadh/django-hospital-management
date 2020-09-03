@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Pharmacy Drug Section</title>
+        <link rel="stylesheet" href="{% static 'main.css' %}"/>
+    </head>
+
+    <body style="background-color : EBEDEF ">
+        <header>
+            <div class="logo" style="border-bottom: 4px solid red;">
+                <span style="color: rgb(8, 53, 252); font-size:50px">Hospital Management System</span>
+                <br><br>
+            </div>
+        </header>
+        <div   style="margin-top: 2%; margin-bottom: 2%;" >
+            <form method="post" action="update_Medicines">
+                {% csrf_token %}
+                <h4 style="text-align: center;">Update Medicines</h4>
+                <table style="padding-top: 10px; padding-left: 35%; padding-right: 35%;">
+                    <tr>
+                        {% for i in m %}
+                        <td style="padding-bottom: 2%;">Drug Name:<font color="red">*<font> </td>
+                        <td style="padding-left: 5%;  padding-bottom: 3%;">
+                            <input class="form-label" type="text" readonly="readonly" name="drugname" value="{{i.medicine_name}}" required></td>
+                    </tr>
+                    <input class="form-label" type="hidden" readonly="readonly" name="id" value="{{i.id}}" na required></td>
+
+                    <tr>
+                        <td style="padding-bottom: 2%;">Quantity:<font color="red">*<font> </td>
+                        <td style="padding-left: 5%;  padding-bottom: 3%;">
+                            <input class="form-label" type="text" name="quantity" id="qua" value="{{i.quantity}}" required></td>
+                    </tr>
+                    <tr>
+                        <td style="padding-bottom: 2%;">Rate:<font color="red">*<font> </td>
+                        <td style="padding-left: 5%;  padding-bottom: 3%;">
+                            <input class="form-label" type="text" name="rate" id="Rate" value="{{i.rate}}" required></td>
+                    </tr>
+                    <tr>
+                        <td style="padding-bottom: 2%;">Manufacturing Date:<font color="red">*<font> </td>
+                        <td style="padding-left: 5%;  padding-bottom: 3%;">
+                            <input class="form-label" type="text" name="mfgdate" id="mfgd" value="{{i.mfgdate}}" required></td>
+                    </tr>
+                    <tr>
+                        <td style="padding-bottom: 2%;">Expire Date:<font color="red">*<font> </td>
+                        <td style="padding-left: 5%;  padding-bottom: 3%;">
+                            <input class="form-label" type="text" name="expdate" id="expd" value="{{i.expdate}}" required></td>
+                    </tr>
+                    <tr >
+                        <td colspan="2" align="center">
+                            <button class="btn" type="submit"> Update Stock</button>
+                        </td>
+                        {% endfor %}
+                    </tr>
+                </table>
+            </form>
+        </div>
+        
+        <footer>
+
+            <h3>2020 &copy; All rights reserved by <span style="color: white;"> Hospital Management System</span></h3>
+
+        </footer>
+    </body>
+</html>

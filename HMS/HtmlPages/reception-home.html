@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+
+    <head>
+        <title>Login Page</title>
+        <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'main.css' %}"/>
+    </head>
+    <header>
+        <div class="logo">
+            <span style="color: rgb(8, 53, 252); font-size:50px">Hospital Management System</span>   
+            <div>
+             <br>
+            </div>	
+            <div class="navbar" >
+                <a href="home.jsp">Home</a>        
+                <div class="dropdown">
+                    <button class="dropbtn">Patient</button>
+                    <div class="dropdown-content">
+                        <a href="registration">Register Patient</a>
+                        <a href="getdetailstoupdate">Update Patient</a>
+                        <a href="delete_form">Delete Patient</a>
+                        <a href="viewPatientForm">View patient Details</a>
+                        <a href="viewallpatients">view All Patient Details</a>
+                        <a href="billing_form">Patient Billing</a>
+                    </div>
+                </div>
+                <div>
+    
+                <a href="logout.jsp">Logout</a>
+            </div>
+        </div>
+    </header>
+    <body  style= "background-color : EBEDEF "  >
+              <div style="text-align: center; margin-top: 10%;" >
+            <p style="font-size: 50px; font-weight: 900; font-family: 'Times New Roman', Times, serif; ">Welcome to Hospital Management System<br> Mr:{{rname}}</p>
+        </div>
+                     <center> {% for message in messages %}
+						<button class="btn" style="background-color: rgb(174, 0, 255);">{{message}}</button>
+						{% endfor %}</center>
+        <div style="height: 115px;"></div>
+        <footer>
+
+            <h3>2020 &copy; All rights reserved by <span style="color: white;"> Hospital Management System</span></h3>
+
+        </footer>
+    </body>
+</html>

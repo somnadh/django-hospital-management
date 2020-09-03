@@ -1,0 +1,40 @@
+
+{% load static %}
+<html>
+    <head>
+        <title>Fetch Details to Update</title>
+        <link rel="stylesheet" href="{% static 'main.css' %}"/>
+    </head>
+    <body  style= "background-color : EBEDEF "  >
+        <div style="text-align: center;background-color: aqua;" >
+      <p style="font-size: 50px; font-weight: 900; font-family: 'Times New Roman', Times, serif; ">International Hospitals Pvt.Ltd</p>
+  </div>
+        <div   style="margin-top: 10%; margin-bottom: 2%;">
+            <form method="get" action="pharmacy_patient">
+                <h4 style="padding-top: 10px; padding-left: 43%; padding-right: 35%;">Get Patient Details</h4>
+                <table style="padding-top: 10px; padding-left: 39%; padding-right: 35%;">
+                    <tr>
+                        <td style="padding-bottom: 2%;">Patient Id:<font color="red">*<font> </td>
+                        <td style="padding-left: 5%;  padding-bottom: 3%;">
+                            <input class="form-label" type="text" name="pt_id" id="name" required></td>
+                    </tr>
+                    <tr >
+                        <td colspan="2" align="center">
+                            <button class="btn" type="submit">Get Details</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            <div style="height: 150px"></div>
+
+
+        </div>
+        
+        
+        <footer>
+
+            <h3>Copyrights &copy; All rights reserved by <span style="color: white;"> Hospital Management System</span></h3>
+
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Pharmacy</title>
+        <link rel="stylesheet" href="{% static 'main.css' %}"/>
+        <style>
+            table, td, th {  
+  border: 2px solid #ddd;
+  text-align: center;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+th{
+    background-color: #00cccc;
+}
+th, td {
+  padding: 15px;
+}
+
+        </style>
+    </head>
+   
+
+    <body style="background-color : EBEDEF ">
+        <header>
+            <div class="logo" style="border-bottom: 4px solid red;">
+                <span style="color: rgb(8, 53, 252); font-size:50px">Hospital Management System</span>
+                <br><br>
+            </div>
+        </header>
+
+
+        <div style="padding: 5%; " >
+            <h2 style="text-align: center; padding-bottom: 2%;">Available Medicines</h2>
+         <table>
+             <thead>
+             <tr style="background-color: activeborder">
+                    <th style="padding: 5;">Medicine_Id</th>
+                    <th style="padding: 5;">Name of the Drug</th>
+                    <th style="padding: 5;">Quantity</th>
+                    <th style="padding: 5;">Price</th>
+                    <th style="padding: 5;">Update</th>
+                </tr>
+                </thead>
+                {% for i in m %}
+                <tr>
+                    <td style="padding: 5;">{{i.id}}</td>
+                    <td style="padding: 5;">{{i.medicine_name}}</td>
+                    <td style="padding: 5;">{{i.quantity}}</td>
+                    <td style="padding: 5;">{{i.rate}}</td>
+                    <td><a href="{% url 'updatemed'%}?id={{i.id}}">Update</a></td>
+
+                </tr>
+                
+               {% endfor %}
+                
+            </table>
+
+
+
+        </div>
+
+        <footer>
+
+            <h3>2020 &copy; All rights reserved by <span style="color: white;"> Hospital Management System</span></h3>
+
+        </footer>
+    </body>
+</html>

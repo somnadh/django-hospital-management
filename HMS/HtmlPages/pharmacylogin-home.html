@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+
+    <head>
+        <title>Login Page</title>
+        <link rel="stylesheet" href="{% static 'main.css' %}"/>
+    </head>
+    <header>
+        <div class="logo">
+            <span style="color: rgb(8, 53, 252); font-size:50px">Hospital Management System</span>   
+    
+            <div>
+                <br>
+            </div>	
+            <div class="navbar" >
+                <a href="home-pharmacy.jsp">Home</a>        
+    <!--            <div class="dropdown">
+                    <button class="dropbtn">patient</button>
+                    <div class="dropdown-content">
+                        <a href="view_patients.jsp">View Patients</a>
+                        <a href="search.jsp">Search Patient</a>
+                     </div>
+                </div>-->
+                <div class="dropdown">
+                    <button class="dropbtn">Stock Management</button>
+                    <div class="dropdown-content">
+                        <a href="Add_New_Medicines">Add New Medicine</a>
+                        <a href="view_medicines">View All Medicines</a>
+                                          </div>
+                </div>
+                  <div class="dropdown">
+                    <button class="dropbtn">Pharmacy</button>
+                    <div class="dropdown-content">
+                        <a href="getdetailsforpharmacy">Get Patient Details</a>
+                    </div>
+                </div>
+   
+    
+                <a href="logout.jsp">Logout</a>
+            </div>
+        </div>
+    </header>
+    <body  style= "background-color : EBEDEF "  >
+              <div style="text-align: center; margin-top: 10%;" >
+            <p style="font-size: 50px; font-weight: 900; font-family: 'Times New Roman', Times, serif; ">Welcome to Hospital Management System<br> Mr:{{recption}}</p>
+        </div>
+        
+        <div style="height: 115px;"></div>
+        <footer>
+
+            <h3>2020 &copy; All rights reserved by <span style="color: white;"> Hospital Management System</span></h3>
+
+        </footer>
+    </body>
+</html>

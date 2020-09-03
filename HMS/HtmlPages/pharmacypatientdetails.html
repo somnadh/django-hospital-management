@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Home Page</title>
+        <link rel="stylesheet" href="{% static 'main.css' %}"/>
+        <style>
+            table, td, th {  
+                border: 2px solid #ddd;
+                text-align: center;
+            }
+
+            table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+            th{
+                background-color: #00cccc;
+            }
+            th, td {
+                padding: 5px;
+            }
+
+        </style>
+    </head>
+    <body  style= "background-color : EBEDEF "  >
+        <div style="text-align: center;background-color: aqua;" >
+      <p style="font-size: 50px; font-weight: 900; font-family: 'Times New Roman', Times, serif; ">International Hospitals Pvt.Ltd</p>
+  </div>
+        
+
+        <div style="padding: 2%; " >
+           
+            <h1 style="text-align: center; padding-bottom: 2%;">Pharmacy</h1>
+            <table>
+                <thead>
+                    <tr style="background-color: activeborder">
+                        <th style="padding: 5;">Patient Id</th>
+                        <th style="padding: 5;">Name</th>
+                        <th style="padding: 5;">Age</th>
+                        <th style="padding: 5;">Address</th>
+                        <th style="padding: 5;">Date of Join</th>
+                    </tr>
+                </thead>
+                {% for p in p %}
+                
+                <tr>
+                    <td>{{p.id}}</td>
+    <td>{{p.patient_name}}</td>
+    <td>{{p.age}}</td>
+   
+   
+    <td>{{p.address}},{{p.city}},{{p.state1}}</td>
+    <td>{{p.doa}}</td>
+   
+        </tr>
+        
+
+        {% endfor %}
+                
+            </table>
+            
+            
+            <h2 style="text-align: center; padding-bottom: 2%; padding-top: 2%;">Patient Medicine Details</h2>
+            <div style="padding-left: 25%; padding-right: 25%">
+            
+            <table>
+                <thead>
+                    <tr style="background-color: activeborder">
+                        <th style="padding: 5;">Medicine Name</th>
+                        <th style="padding: 5;">Quantity</th>
+                        <th style="padding: 5;">Rate</th>
+                        <th style="padding: 5;">Amount</th>
+                    </tr>
+                </thead>
+                <%
+            String query1 = "select * from tracking_medicines where patient_id=?";
+            PreparedStatement st1 = con.prepareStatement(query1);
+            st1.setInt(1, id);
+            ResultSet rs1 = st1.executeQuery();
+            while (rs1.next()) {
+                
+            String query2 = "select * from medicines where medicine_id=?";
+            PreparedStatement st2 = con.prepareStatement(query2);
+            st2.setInt(1, rs1.getInt(3));
+            ResultSet rs2 = st2.executeQuery();
+            if(rs2.next()){ %>
+                <tr>
+                    <td style="padding: 5;"><%= rs2.getString(2)%></td>
+                    <td style="padding: 5;"><%= rs1.getInt(4)%></td>
+                    <td style="padding: 5;"><%= rs2.getInt(4)%></td>
+                    <td style="padding: 5;"><%= rs1.getInt(4)*rs2.getInt(4)%></td>
+                </tr>
+                <%} }%>
+            </table>
+            </div>
+            <form method="get" action="issue_medicine_form" style="text-align: center; padding-top: 2%;">
+                {% for p in p %}
+                <input type="hidden" name="pt_id" value="{{p.id}}">
+                {% endfor %}
+                <button class="btn" type="submit">Issue Medicines</button>
+            </form>
+
+        </div>
+
+        <footer>
+
+            <h3>2020 &copy; All rights reserved by <span style="color: white;"> Hospital Management System</span></h3>
+
+        </footer>
+    </body>
+</html>
